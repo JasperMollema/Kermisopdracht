@@ -3,11 +3,12 @@ public class Hawaii extends RisicoRijkeAttracties {
 	private String naam;
 	private double prijs;
 	private int oppervlakte;
-	private int laatsteOnderhoud; 
+	private static int laatsteOnderhoud; 
 	private static int kaartjesVerkocht;
 	private static double omzet;
-	private int draaiLimiet;
-	private boolean onderhoudNodig;
+	private final int draaiLimiet;
+	private static boolean onderhoudNodig;
+	protected Kassa kassa = new Kassa();
 
 	Hawaii(){
 		this.prijs = 2.9;
@@ -17,6 +18,7 @@ public class Hawaii extends RisicoRijkeAttracties {
 	
 	@Override String keuren(Attractie attractie){
 		laatsteOnderhoud = 0;
+		onderhoudNodig = false;
 		return naam;
 	}
 
@@ -29,6 +31,7 @@ public class Hawaii extends RisicoRijkeAttracties {
 		}
 		kaartjeKopen(attractie);
 		System.out.println(this.naam + " draait!");
+		laatsteOnderhoud++;
 	}
 
 	@Override
@@ -43,17 +46,14 @@ public class Hawaii extends RisicoRijkeAttracties {
 	}
 	
 	void kaartjeKopen(Attractie attractie) {
-		
-		omzet += this.prijs;
-		kaartjesVerkocht++;
-		laatsteOnderhoud++;
-		new Kassa().kaartjeKopen(this.prijs);
-		}
-	
+			omzet += this.prijs;
+			kaartjesVerkocht++;
+			kassa.kaartjeKopen(this.prijs);
+			}
 	
 	@Override
 	void opstellingsKeuring() {
-		if(laatsteOnderhoud < draaiLimiet)
+		if(laatsteOnderhoud == draaiLimiet)
 			onderhoudNodig = true;
 	}
 

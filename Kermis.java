@@ -5,6 +5,7 @@ import java.util.Scanner;
 public class Kermis {
 	private Scanner lezer = new Scanner (System.in);
 	private static List<Attractie> attracties = new ArrayList<>();
+	Kassa kassa = new Kassa();
 	
 	
 	void voegAttractieToe(Attractie attractie) {
@@ -28,13 +29,16 @@ public class Kermis {
 			attractieKiezen(kiesAttractie());
 		}
 		else if(keuze.equals("o")) {
-			new Kassa().omzetTonen(attracties);
+			kassa.omzetTonen(attracties);
 		}
 		else if(keuze.equals("k")) {
-			new Kassa().kaartjesTonen(attracties);
+			kassa.kaartjesTonen(attracties);
 		}
 		else if(keuze.equals("m")){
 			monteurHalen();
+		}
+		else if(keuze.equals("b")) {
+			belastingBetalen();
 		}
 		else if(keuze.equals("s")) {
 			stoppen();
@@ -52,6 +56,11 @@ public class Kermis {
 			}		
 	}
 	
+	void belastingBetalen() {
+		for(Attractie attractie : attracties) {
+			new BelastingInspecteur().checkGokAttractie(attractie);
+		}
+	}
 
 	String kiesAttractie() {
 		System.out.println("Welke attractie? \r"
@@ -66,17 +75,17 @@ public class Kermis {
 	
 	void attractieKiezen(String keuze) {
 		switch(keuze){
-		case "1" :	attractieDraaien(new Botsautos());
+		case "1" :	attractieDraaien(attracties.get(0));
 			break;
-		case "2" : 	attractieDraaien(new Spin());
+		case "2" : 	attractieDraaien(attracties.get(1));
 			break;
-		case "3" :	attractieDraaien(new SpiegelPaleis());
+		case "3" :	attractieDraaien(attracties.get(2));
 			break;
-		case "4" : 	attractieDraaien(new Spookhuis());
+		case "4" : 	attractieDraaien(attracties.get(3));
 			break;
-		case "5" :	attractieDraaien(new Hawaii());
+		case "5" :	attractieDraaien(attracties.get(4));
 			break;
-		case "6" : 	attractieDraaien(new Ladderklimmen());
+		case "6" : 	attractieDraaien(attracties.get(5));
 			break;
 		default : 	leesInput(printKeuzes());		
 			break;

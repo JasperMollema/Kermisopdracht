@@ -5,6 +5,7 @@ public class Botsautos extends Attractie{
 	protected int oppervlakte;
 	protected static int kaartjesVerkocht;
 	protected static double omzet;
+	protected Kassa kassa = new Kassa();
 	
 	Botsautos(){
 		this.prijs = 2.5;
@@ -32,7 +33,7 @@ public class Botsautos extends Attractie{
 	void kaartjeKopen(Attractie attractie) {
 		omzet += this.prijs;
 		kaartjesVerkocht++;
-		new Kassa().kaartjeKopen(this.prijs);
+		kassa.kaartjeKopen(this.prijs);
 		}
 	
 

@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.List;
 
 public class Kassa {
@@ -11,7 +10,8 @@ public class Kassa {
 		for (Attractie attractie : attracties) {
 			attractie.omzetTonen(attractie);
 		}
-		System.out.println("Totale omzet: " + totaleOmzet);
+		String omzet1  = String.format("%.2f", totaleOmzet);
+		System.out.println("Totale omzet: " + omzet1);
 		System.out.println("");
 	}
 	

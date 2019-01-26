@@ -5,6 +5,7 @@ public class SpiegelPaleis extends Attractie {
 	protected int oppervlakte;
 	protected static int kaartjesVerkocht;
 	protected static double omzet;
+	protected Kassa kassa = new Kassa();
 
 	SpiegelPaleis (){
 		this.prijs = 2.75;
@@ -31,7 +32,7 @@ public class SpiegelPaleis extends Attractie {
 	void kaartjeKopen(Attractie attractie) {
 		omzet += this.prijs;
 		kaartjesVerkocht++;
-		new Kassa().kaartjeKopen(this.prijs);
+		kassa.kaartjeKopen(this.prijs);
 		}
 
 }

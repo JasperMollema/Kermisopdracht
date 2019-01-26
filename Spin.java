@@ -6,8 +6,9 @@ public class Spin extends RisicoRijkeAttracties{
 	protected static int kaartjesVerkocht;
 	protected static double omzet;
 	protected int draaiLimiet;
-	private int laatsteOnderhoud;
-	private boolean onderhoudNodig;
+	private static int laatsteOnderhoud;
+	private static boolean onderhoudNodig;
+	protected Kassa kassa = new Kassa();
 		
 	Spin(){
 		this.prijs = 2.25;
@@ -17,6 +18,7 @@ public class Spin extends RisicoRijkeAttracties{
 	
 	@Override String keuren(Attractie attractie){
 		laatsteOnderhoud = 0;
+		onderhoudNodig = false;
 		return naam;
 	}
 
@@ -46,7 +48,7 @@ public class Spin extends RisicoRijkeAttracties{
 	void kaartjeKopen(Attractie attractie) {
 			omzet += this.prijs;
 			kaartjesVerkocht++;
-			new Kassa().kaartjeKopen(this.prijs);
+			kassa.kaartjeKopen(this.prijs);
 			}
 	
 	@Override

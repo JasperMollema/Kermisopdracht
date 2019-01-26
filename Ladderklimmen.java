@@ -7,6 +7,7 @@ public class Ladderklimmen extends Attractie implements GokAttractie{
 	protected int oppervlakte;
 	protected static int kaartjesVerkocht;
 	protected static double omzet;
+	protected Kassa kassa = new Kassa();
 
 	Ladderklimmen(){
 		this.prijs = 5;
@@ -18,7 +19,7 @@ public class Ladderklimmen extends Attractie implements GokAttractie{
 		kaartjesVerkocht++;
 		omzet += nettoOpbrengst;
 		brutoOmzet += this.prijs;
-		new Kassa().kaartjeKopen(nettoOpbrengst);
+		kassa.kaartjeKopen(nettoOpbrengst);
 		gereserveerdeBelasting += this.prijs*percentage;
 	}
 
@@ -27,7 +28,7 @@ public class Ladderklimmen extends Attractie implements GokAttractie{
 	public void kansspelBelastingBetalen() {
 		String belasting  = String.format("%.2f", gereserveerdeBelasting);
 		System.out.println("Er is " + belasting + " betaald over " + brutoOmzet 
-				+ " omzet voor de gokattracties");
+				+ " omzet voor " + naam);
 		gereserveerdeBelasting = 0;
 		brutoOmzet = 0;
 		
@@ -48,5 +49,6 @@ public class Ladderklimmen extends Attractie implements GokAttractie{
 	void kaartjesTonen(Attractie attractie) {
 		 System.out.println("Verkochte kaartjes " + this.naam + ": " + kaartjesVerkocht);
 	}
+	
 
 }

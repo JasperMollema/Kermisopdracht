@@ -5,6 +5,7 @@ public class Spookhuis extends Attractie {
 	protected int oppervlakte;
 	protected static int kaartjesVerkocht;
 	protected static double omzet;
+	protected Kassa kassa = new Kassa();
 	
 	Spookhuis(){
 		this.prijs = 3.2;
@@ -31,6 +32,6 @@ public class Spookhuis extends Attractie {
 	void kaartjeKopen(Attractie attractie) {
 		omzet += this.prijs;
 		kaartjesVerkocht++;
-		new Kassa().kaartjeKopen(this.prijs);
+		kassa.kaartjeKopen(this.prijs);
 		}
 }
